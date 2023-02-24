@@ -11,7 +11,7 @@ import org.springframework.core.io.ResourceLoader;
 public class TestUtils {
   public static String getJson(String fileName) throws IOException {
     ResourceLoader resourceLoader = new DefaultResourceLoader();
-    Resource resource = resourceLoader.getResource("classpath:" +fileName);
+    Resource resource = resourceLoader.getResource("classpath:" + fileName);
     if (resource.getInputStream() != null) {
       BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
       return reader.lines().collect(Collectors.joining(System.lineSeparator()));

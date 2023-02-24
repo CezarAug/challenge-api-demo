@@ -66,8 +66,7 @@ version = '0.0.1-SNAPSHOT'
 description = 'api-demo'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-
-apply plugin: 'org.owasp.dependencycheck'
+apply plugin: 'jacoco'
 
 
 tasks.named('test') {
@@ -89,4 +88,21 @@ jacocoTestReport {
         xml.enabled true
         html.enabled true
     }
+    finalizedBy jacocoTestCoverageVerification
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.80
+            }
+        }
+    }
+}
+
+
+apply plugin: 'org.owasp.dependencycheck'
+dependencyCheck {
+    failBuildOnCVSS = 11
 }

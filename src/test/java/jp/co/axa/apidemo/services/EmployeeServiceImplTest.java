@@ -43,14 +43,16 @@ class EmployeeServiceImplTest {
   @Test
   void getAllEmployees_withSorting_defaultsToId() {
     employeeService.getAllEmployees(0, 10, null, SortDirection.DESC);
-    verify(employeeRepository, times(1)).findAll(PageRequest.of(0, 10, Sort.by(SortableEmployeeColumns.ID.toString().toLowerCase()).descending()));
+    verify(employeeRepository, times(1))
+        .findAll(PageRequest.of(0, 10, Sort.by(SortableEmployeeColumns.ID.toString().toLowerCase()).descending()));
     verifyNoMoreInteractions(employeeRepository);
   }
 
   @Test
   void getAllEmployees_withOrderBy_defaultsToASC() {
     employeeService.getAllEmployees(0, 10, SortableEmployeeColumns.SALARY, null);
-    verify(employeeRepository, times(1)).findAll(PageRequest.of(0, 10, Sort.by(SortableEmployeeColumns.SALARY.toString().toLowerCase()).ascending()));
+    verify(employeeRepository, times(1))
+        .findAll(PageRequest.of(0, 10, Sort.by(SortableEmployeeColumns.SALARY.toString().toLowerCase()).ascending()));
     verifyNoMoreInteractions(employeeRepository);
   }
 
@@ -97,7 +99,8 @@ class EmployeeServiceImplTest {
 
     when(employeeRepository.getReferenceById(employee.getId())).thenReturn(null);
 
-    Assertions.assertThrows(EmployeeNotFoundException.class, () -> employeeService.updateEmployee(employee));
+    Assertions.assertThrows(EmployeeNotFoundException.class,
+        () -> employeeService.updateEmployee(employee));
 
     verify(employeeRepository, times(1)).getReferenceById(employee.getId());
     verify(employeeRepository, times(0)).save(employee);

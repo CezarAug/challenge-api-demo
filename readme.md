@@ -40,12 +40,32 @@ There are two profiles in this project
 
 #### Other tasks
 
-##### Sonarlint
+##### Checkstyle
+
+A version of google checks was configured for this project with some minor tweaks.
+```
+gradle checkstyleMain
+gradle checkstyleTest
+```
 
 ##### Jacoco Report
 
-##### OWASP Dependency Check
+There are two gradle tasks available.
+```
+gradle jacocoTestReport
+gradle jacocoTestCoverageVerification
+```
+Test verification will be always run after the report (80% coverage filter).
 
+Test report is available at: ``build/reports/jacoco/test/html/index.html``
+
+##### OWASP Dependency Check
+```gradle dependencyCheckAnalyze```
+- Please notice that the first execution might take a while to complete.
+
+Currently, the CVSS score is set as 11 (default) just for demo purposes.
+
+They can be set to lower levels and each dependency that has an issue can be configured as an exception with an expiration date. (Then builds will start to fail again and the team has to take action by updating or delaying it).
 
 ### Database
 
@@ -101,7 +121,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - Checkstyle: A more fine tune in some configurations (Javadoc for instance)
 - Spring Security: Create an authorization provider and use a proper JWT.
 - Tracing: Configure Micrometer Tracing (Previously Known as Spring Cloud Sleuth)
-
+- GitHub Actions: Add actions for coverage reports, so PR reviewers can see the status without checking build logs.
 
 
 ## Original Readme info

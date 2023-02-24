@@ -29,10 +29,10 @@ import org.springframework.test.web.servlet.MockMvc;
 @SqlGroup({
     @Sql(value = "classpath:db/import.sql", executionPhase = BEFORE_TEST_METHOD)
 })
-public class WebApplicationTest {
+class WebApplicationTest {
 
   @Autowired
-  private MockMvc mockMvc;
+  MockMvc mockMvc;
 
   @Test
   void shouldReturn401ForUnauthorizedRequests() throws Exception {
@@ -42,7 +42,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldGetEmployeeById() throws Exception {
+  void shouldGetEmployeeById() throws Exception {
     this.mockMvc.perform(get("/api/v1/employees/1"))
         .andDo(print()).andExpect(status().isOk())
         .andExpect(content().contentType(MediaTypes.HAL_JSON))
@@ -51,7 +51,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldDeleteEmployeeById() throws Exception {
+  void shouldDeleteEmployeeById() throws Exception {
     this.mockMvc.perform(delete("/api/v1/employees/1"))
         .andDo(print()).andExpect(status().isOk())
         .andExpect(content().string(""));
@@ -59,7 +59,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldPostEmployee() throws Exception {
+  void shouldPostEmployee() throws Exception {
     this.mockMvc.perform(
         post("/api/v1/employees")
             .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +71,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldGetAllEmployees() throws Exception {
+  void shouldGetAllEmployees() throws Exception {
     this.mockMvc.perform(
             get("/api/v1/employees?page=0&size=10")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -84,7 +84,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldPutEmployee() throws Exception {
+  void shouldPutEmployee() throws Exception {
     this.mockMvc.perform(
             put("/api/v1/employees/2")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -102,7 +102,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldRejectPostInvalidEmployee() throws Exception {
+  void shouldRejectPostInvalidEmployee() throws Exception {
     this.mockMvc.perform(
             post("/api/v1/employees")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -115,7 +115,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldRejectDeleteInvalidEmployeeById() throws Exception {
+  void shouldRejectDeleteInvalidEmployeeById() throws Exception {
     this.mockMvc.perform(delete("/api/v1/employees/10000000"))
         .andDo(print()).andExpect(status().isBadRequest())
         .andExpect(content().string(getJson("json/deleteOrPutEmployeeInvalidResponse.json")));
@@ -123,7 +123,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldRejectPutInvalidEmployeeById() throws Exception {
+  void shouldRejectPutInvalidEmployeeById() throws Exception {
     this.mockMvc.perform(delete("/api/v1/employees/10000000"))
         .andDo(print()).andExpect(status().isBadRequest())
         .andExpect(content().string(getJson("json/deleteOrPutEmployeeInvalidResponse.json")));
@@ -131,7 +131,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldRejectGetInvalidEmployeeById() throws Exception {
+  void shouldRejectGetInvalidEmployeeById() throws Exception {
     this.mockMvc.perform(get("/api/v1/employees/invalid"))
         .andDo(print()).andExpect(status().isBadRequest())
         .andExpect(content().string(getJson("json/getEmployeeInvalidResponse.json")));
@@ -139,7 +139,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldRejectGetEmployeesWithInvalidQueryParams() throws Exception {
+  void shouldRejectGetEmployeesWithInvalidQueryParams() throws Exception {
     this.mockMvc.perform(get("/api/v1/employees?page=0&size=0"))
         .andDo(print()).andExpect(status().isBadRequest())
         .andExpect(content().string(getJson("json/getAllEmployeesInvalidResponse.json")));
@@ -147,7 +147,7 @@ public class WebApplicationTest {
 
   @Test
   @WithMockUser(roles = "USER")
-  public void shouldGetEmptyEmployeeById() throws Exception {
+  void shouldGetEmptyEmployeeById() throws Exception {
     this.mockMvc.perform(get("/api/v1/employees/90000"))
         .andDo(print()).andExpect(status().isOk())
         .andExpect(content().string(""));
