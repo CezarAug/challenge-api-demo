@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/001_create_database.sql
+  - include:
+      file: db/002_populate_database.sql

@@ -1,0 +1,92 @@
+//TODO: Add tests
+//TODO: Check comments
+//TODO: Docker compose with another database?
+//TODO: API documentation
+//TODO: Finish README
+//TODO: Github actions - Improve things
+//TODO: Configure test results report with Jacoco, add pipeline break for low coverage
+//TODO: Solve sonar issues
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        //Scan for vulnerabilities
+        classpath 'org.owasp:dependency-check-gradle:8.1.0'
+    }
+}
+
+plugins {
+    id 'java'
+    // Moving away from critical issues from the past. Latest version with Java 8 support
+    id 'org.springframework.boot' version '2.7.9'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+
+    // Lombok recommendation for Gradle
+    id "io.freefair.lombok" version "6.6.2"
+
+    id 'checkstyle'
+    id 'jacoco'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //Enabling Swagger
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+
+    //Entity <-> Rest mapping
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+    //Liquibase for database migrations on prod profile
+    implementation 'org.liquibase:liquibase-core:4.19.0'
+
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+}
+
+group = 'jp.co.axa'
+version = '0.0.1-SNAPSHOT'
+description = 'api-demo'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+
+apply plugin: 'org.owasp.dependencycheck'
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}

@@ -1,0 +1,14 @@
+services:
+  employee-api:
+    container_name: employee-api
+    image: challenge/employee-api:0.0.1-SNAPSHOT
+    environment:
+      CONFIG_SERVER: "http://config-server:8001"
+      JAVA_OPTS: "-Dspring.profiles.active=prod"
+    networks:
+      - challenge
+    ports:
+      - "8080:8080"
+
+networks:
+  challenge: {}
