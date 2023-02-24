@@ -1,3 +1,5 @@
+[![Java CI with Gradle](https://github.com/CezarAug/challenge-api-demo/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/CezarAug/challenge-api-demo/actions/workflows/build.yml)
+
 ### How to use this spring-boot project
 
 - Install packages with `mvn package`
