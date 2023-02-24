@@ -2,9 +2,9 @@ package jp.co.axa.apidemo.infrastructure.rest.controller;
 
 
 import java.util.Optional;
-import javax.validation.Valid;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.infrastructure.mapper.EmployeeMapper;
+import jp.co.axa.apidemo.infrastructure.rest.api.EmployeeApi;
 import jp.co.axa.apidemo.infrastructure.rest.assembler.EmployeeAssembler;
 import jp.co.axa.apidemo.infrastructure.rest.model.EmployeeRequest;
 import jp.co.axa.apidemo.infrastructure.rest.model.EmployeeResponse;
@@ -22,18 +22,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/api/v1",
     produces = MediaTypes.HAL_JSON_VALUE)
-public class EmployeeController {
+public class EmployeeController implements EmployeeApi {
 
   private final EmployeeService employeeService;
 
@@ -54,10 +51,10 @@ public class EmployeeController {
 
   @GetMapping("/employees")
   public ResponseEntity<PagedModel<EntityModel<EmployeeResponse>>> getEmployees(
-      @RequestParam(defaultValue = "0") Integer page,
-      @RequestParam(defaultValue = "10") Integer size,
-      @RequestParam(required = false) @Valid SortableEmployeeColumns orderBy,
-      @RequestParam(required = false) @Valid SortDirection sortDirection
+      Integer page,
+      Integer size,
+      SortableEmployeeColumns orderBy,
+      SortDirection sortDirection
   ) {
     return new ResponseEntity<>(
         pagedResourcesAssembler.toModel(
@@ -67,8 +64,7 @@ public class EmployeeController {
   }
 
   @GetMapping(value = "/employees/{employeeId}")
-  public ResponseEntity<EntityModel<EmployeeResponse>> getEmployee(
-      @PathVariable(name = "employeeId") Long employeeId) {
+  public ResponseEntity<EntityModel<EmployeeResponse>> getEmployee(Long employeeId) {
 
     Optional<Employee> employee = employeeService.getEmployee(employeeId);
 
@@ -80,20 +76,20 @@ public class EmployeeController {
   }
 
   @PostMapping("/employees")
-  public void saveEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
+  public void saveEmployee(EmployeeRequest employeeRequest) {
     employeeService.saveEmployee(mapper.employeeRequestToEmployee(employeeRequest));
     log.info("Employee Saved Successfully");
   }
 
   @DeleteMapping("/employees/{employeeId}")
-  public void deleteEmployee(@PathVariable(name = "employeeId") Long employeeId) {
+  public void deleteEmployee(Long employeeId) {
     employeeService.deleteEmployee(employeeId);
     log.info("Employee {} Deleted Successfully", employeeId);
   }
 
   @PutMapping("/employees/{employeeId}")
-  public void updateEmployee(@Valid @RequestBody EmployeeRequest employee,
-                             @PathVariable(name = "employeeId") Long employeeId) {
+  public void updateEmployee(EmployeeRequest employee,
+                             Long employeeId) {
     Employee emp = mapper.employeeRequestToEmployee(employee);
     emp.setId(employeeId);
     employeeService.updateEmployee(emp);

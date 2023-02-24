@@ -112,6 +112,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 
 # Pending tasks and things that could have been done with more time
 - Should have started with git for a more distributed commit pace. (Sorry)
+- SringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Java 17
   - Remove Lombok, in the Java 8 it was the law, but with the evolutions introduced in newer versions it is no longer vital and now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
   - Spring: Update it to the latest versions. Now Java 17 is required.
