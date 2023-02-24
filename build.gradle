@@ -1,11 +1,8 @@
-//TODO: Add tests
-//TODO: Check comments
 //TODO: Docker compose with another database?
 //TODO: API documentation
+//TODO: Rescan packages and classes for refactor or new comments
 //TODO: Finish README
 //TODO: Github actions - Improve things
-//TODO: Configure test results report with Jacoco, add pipeline break for low coverage
-//TODO: Solve sonar issues
 
 buildscript {
     repositories {

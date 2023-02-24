@@ -67,6 +67,8 @@ Currently, the CVSS score is set as 11 (default) just for demo purposes.
 
 They can be set to lower levels and each dependency that has an issue can be configured as an exception with an expiration date. (Then builds will start to fail again and the team has to take action by updating or delaying it).
 
+Report can be found at: ``build/reports/dependency-check-report.html``
+
 ### Database
 
 Application (with the embedded H2 database) is ready to be used ! You can access the url below for testing it :
@@ -103,7 +105,8 @@ Application (with the embedded H2 database) is ready to be used ! You can access
   - Cache: Added a simple ConcurrentMapCache.
   - Security: Basic authorization was added.
 - Tests:
-  - Added Jacoco report with coverage targets for the pipeline.
+  - Added Jacoco report with coverage targets in the build step.
+  - Added dependency check
 - Build:
   - Added a basic pipeline on GitHub actions just to run the tests and check if it builds.
 
@@ -155,16 +158,3 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - Appropriate usage of packages
 - Is the application running as expected
 - No performance issues
-
-#### Your experience in Java
-
-Please let us know more about your Java experience in a few sentences. For example:
-
-- I have 3 years experience in Java and I started to use Spring Boot from last year
-- I'm a beginner and just recently learned Spring Boot
-- I know Spring Boot very well and have been using it for many years
-
-
-## How to run
-
-
