@@ -2,7 +2,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main", "github-actions-improvements" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -33,3 +33,22 @@ jobs:
         token: ${{ secrets.GH_TOKEN }}
         min-coverage-overall: 80
         min-coverage-changed-files: 60
+    - name: Depcheck
+      uses: dependency-check/Dependency-Check_Action@main
+      env:
+        JAVA_HOME: /opt/jdk
+      id: Depcheck
+      with:
+        project: 'api-demo'
+        path: '.'
+        format: 'HTML'
+        out: 'reports' # this is the default, no need to specify unless you wish to override it
+        # 11 Just for demo purposes
+        args: >
+          --failOnCVSS 11 
+          --enableRetired
+    - name: Upload Test results
+      uses: actions/upload-artifact@master
+      with:
+        name: Test reports
+        path: ${{github.workspace}}/reports
