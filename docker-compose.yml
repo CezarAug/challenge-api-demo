@@ -3,8 +3,7 @@ services:
     container_name: employee-api
     image: challenge/employee-api:0.0.1-SNAPSHOT
     environment:
-      CONFIG_SERVER: "http://config-server:8001"
-      JAVA_OPTS: "-Dspring.profiles.active=prod"
+      SPRING_PROFILES_ACTIVE: "prod"
     networks:
       - challenge
     ports:
