@@ -22,7 +22,7 @@ Please let us know more about your Java experience in a few sentences. For examp
   
 ### API docs and Postman collection
 Swagger UI: ``http://localhost:8080/swagger-ui.html``
-Postman Collection:
+Postman Collection: [Postman collection](.postman%2Femployee-api-demo.postman_collection.json)
 
 ### Authorization
 The API has just a Basic authorization, try sending requests with user: ``user`` and password: ``password``.
@@ -82,7 +82,6 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 > Don't forget to set the `JDBC URL` value as `jdbc:h2:mem:testDb` for H2 UI.
 
 
-
 # Changes and Functionalities added to the project
 - Upgraded Spring to the latest possible version for Java 8
   - Due to possible issues with security in previous versions, such as the log4J issue.
@@ -133,7 +132,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - API Operations
   - Add more operations to search for an employee and not just the ID.
 - Liquibase: Could use generate changelog in order to get a database agnostic configuration (Now everything is in SQL)
-- Dependency check: Be more strict with the 
+- Dependency check: Be more strict with the severity of the vulnerabilities and add a exclusion list.
 
 ## Original Readme info
 ### Instructions
