@@ -11,6 +11,7 @@ import org.springframework.hateoas.LinkRelation;
 class EmployeeAssemblerTest {
 
   private EmployeeAssembler employeeAssembler = new EmployeeAssembler();
+
   @Test
   void shouldMapEmployeeIntoHateoasEmployeeResponse() {
 
