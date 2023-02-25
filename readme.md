@@ -110,7 +110,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - Build:
   - Added a basic pipeline on GitHub actions just to run the tests and check if it builds.
 
-# Pending tasks and things that could have been done with more time
+# Pending tasks and things I'd check with more time
 - Should have started with git for a more distributed commit pace. (Sorry)
 - SringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Java 17
