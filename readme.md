@@ -101,21 +101,25 @@ Application (with the embedded H2 database) is ready to be used ! You can access
     - Mapstruct for DTO and Entity conversions. (Could have been others)
   - Moved some logic from the controller layer to the service layer on the update request.
   - Added pagination and sorting for findAll employees.
-    - The idea is to block select all operations and limit consumers to fetch with limits.
+    - The idea is to deny selecting everything at once and limit consumers.
   - Spring Profiles:
     - Enabling and disabling functionalities according to the environment.
   - Cache: Added a simple ConcurrentMapCache.
   - Security: Basic authorization was added.
+  - Added validation
+  - Fixed some issues when requesting for invalid employees.
 - Tests:
   - Added Jacoco report with coverage targets in the build step.
   - Added dependency check
 - Build:
-  - Added a basic pipeline on GitHub actions just to run the tests and check if it builds.
+  - Added a basic pipeline on GitHub actions to run the tests and check if it builds.
+  - Added a step for jacoco report checking for at least 80% coverage (Results are shown in the PR comments)
+  - Added an OWASP dependency check step
 
 # Pending tasks and things I'd check with more time
 - Should have started with git for a more distributed commit pace. (Sorry)
 - Java 17
-  - Remove Lombok, in the Java 8 it was the law, but with the evolutions introduced in newer versions it is no longer vital. Now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
+  - Remove Lombok: During Java 8 era it was the law, but with the evolutions introduced in newer versions it is no longer vital. Now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
   - Spring: Update it to the latest versions. Now Java 17 is required.
 - Employee salary: Could have been better (decimals)
 - Employee department also could have been separated from the Employee entity
@@ -128,7 +132,6 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - SpringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Spring Security: Create an authorization provider and use a proper JWT.
 - Tracing: Configure Micrometer Tracing (Previously Known as Spring Cloud Sleuth)
-- GitHub Actions: Add actions for coverage reports, so PR reviewers can see the status without checking build logs.
 - API Operations
   - Add more operations to search for an employee and not just the ID.
 - Liquibase: Could use generate changelog in order to get a database agnostic configuration (Now everything is in SQL)
