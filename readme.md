@@ -13,12 +13,16 @@ Please let us know more about your Java experience in a few sentences. For examp
 - Install packages with `gradle build`
 - Run `gradle bootRun` for starting the application (or use your IDE)
 
-
+#### Docker (Recommended)
 - Docker compose is also available (default profile: PROD)
-  - ```
-    docker build -t challenge/employee-api:0.0.1-SNAPSHOT ./
-    docker-compose up
-    ```
+  ```
+  docker build -t challenge/employee-api:0.0.1-SNAPSHOT ./
+  docker-compose up
+  ```
+  
+### API docs and Postman collection
+Swagger UI: ``http://localhost:8080/swagger-ui.html``
+Postman Collection:
 
 ### Authorization
 The API has just a Basic authorization, try sending requests with user: ``user`` and password: ``password``.
@@ -26,7 +30,7 @@ Or an Authorization header with: ```'Authorization: Basic dXNlcjpwYXNzd29yZA=='`
 
 Or check the Postman collection for request examples.
 
-#### Available Spring Profiles
+### Available Spring Profiles
 
 There are two profiles in this project
 
@@ -38,7 +42,7 @@ There are two profiles in this project
   - Queries output and H2 console are disabled
   - Database creation and initial dataset will be handled by Liquibase
 
-#### Other tasks
+### Other tasks
 
 ##### Checkstyle
 
@@ -73,7 +77,6 @@ Report can be found at: ``build/reports/dependency-check-report.html``
 
 Application (with the embedded H2 database) is ready to be used ! You can access the url below for testing it :
 
-- Swagger UI : http://localhost:8080/swagger-ui.html
 - H2 UI : http://localhost:8080/h2-console
 
 > Don't forget to set the `JDBC URL` value as `jdbc:h2:mem:testDb` for H2 UI.
@@ -86,7 +89,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - Moved away from Autowired to constructor based injection
   - Unit test friendly :)
 - JUnit 5
-  - When Spring was upgraded, there is no longer a bundled Junit 4.,
+  - When Spring was upgraded, there is no longer a bundled Junit 4.
 - Formatting
   - Added checkstyle (Using google checks)
     - Removed mandatory javadocs in order to add them where they are really necessary.
@@ -112,21 +115,25 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 
 # Pending tasks and things I'd check with more time
 - Should have started with git for a more distributed commit pace. (Sorry)
-- SringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Java 17
   - Remove Lombok, in the Java 8 it was the law, but with the evolutions introduced in newer versions it is no longer vital and now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
   - Spring: Update it to the latest versions. Now Java 17 is required.
 - Employee salary: Could have been better (decimals)
+- Employee department also could have been separated from the Employee entity
 - Employee JPA operations:
   - Update: Would play a little more with writing an update VS using getReference.
   - Would check future entities in order to check possible issues with multiple selects being created. (N + 1 Issue)
   - Post operation could return the id or the full EmployeeResponse object.
 - Caching: Try using another solution (Redis most likely)
 - Checkstyle: A more fine tune in some configurations (Javadoc for instance)
+- SringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Spring Security: Create an authorization provider and use a proper JWT.
 - Tracing: Configure Micrometer Tracing (Previously Known as Spring Cloud Sleuth)
 - GitHub Actions: Add actions for coverage reports, so PR reviewers can see the status without checking build logs.
-
+- API Operations
+  - Add more operations to search for an employee and not just the ID.
+- Liquibase: Could use generate changelog in order to get a database agnostic configuration (Now everything is in SQL)
+- Dependency check: Be more strict with the 
 
 ## Original Readme info
 ### Instructions
