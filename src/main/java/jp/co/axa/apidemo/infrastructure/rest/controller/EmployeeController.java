@@ -1,6 +1,5 @@
 package jp.co.axa.apidemo.infrastructure.rest.controller;
 
-
 import java.util.Optional;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.infrastructure.mapper.EmployeeMapper;
