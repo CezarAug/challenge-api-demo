@@ -25,12 +25,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+//Moving annotations to this interface in order to keep the controller easier to read.
 @SecurityRequirement(name = "basicAuth")
 @Tag(name = "Employee", description = "Employee API")
 public interface EmployeeApi {
-
-
   @Operation(summary = "List all employees",
       description = "List all employees. It can be ordered by any employee field.")
 

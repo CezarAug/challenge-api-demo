@@ -1,7 +1,3 @@
-//TODO: Rescan packages and classes for refactor or new comments
-//TODO: Finish README
-//TODO: Github actions - Improve things
-
 buildscript {
     repositories {
         mavenCentral()
