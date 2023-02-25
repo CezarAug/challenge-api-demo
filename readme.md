@@ -97,7 +97,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
     - Liquibase migrations controlling the schema and not JPA auto generation.
     - Database pre-populated with some test data.
 - General changes
-  - Added Request object DTO for Employee to avoid exposing the entity directly.
+  - Added Request/Response object DTO for Employee to avoid exposing the entity directly.
     - Mapstruct for DTO and Entity conversions. (Could have been others)
   - Moved some logic from the controller layer to the service layer on the update request.
   - Added pagination and sorting for findAll employees.
