@@ -94,7 +94,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
     - Removed mandatory javadocs in order to add them where they are really necessary.
 - Database
   - Prod profile (docker compose) only:
-    - Liquibase migrations controlling the schema and not JPA's auto generation.
+    - Liquibase migrations controlling the schema and not JPA auto generation.
     - Database pre-populated with some test data.
 - General changes
   - Added Request object DTO for Employee to avoid exposing the entity directly.
@@ -115,7 +115,7 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 # Pending tasks and things I'd check with more time
 - Should have started with git for a more distributed commit pace. (Sorry)
 - Java 17
-  - Remove Lombok, in the Java 8 it was the law, but with the evolutions introduced in newer versions it is no longer vital and now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
+  - Remove Lombok, in the Java 8 it was the law, but with the evolutions introduced in newer versions it is no longer vital. Now it raises questions and discussions about the trade-off of having extra/unnecessary load. Even not knowing what actually will be generated as bytecode in the end.
   - Spring: Update it to the latest versions. Now Java 17 is required.
 - Employee salary: Could have been better (decimals)
 - Employee department also could have been separated from the Employee entity
@@ -125,20 +125,20 @@ Application (with the embedded H2 database) is ready to be used ! You can access
   - Post operation could return the id or the full EmployeeResponse object.
 - Caching: Try using another solution (Redis most likely)
 - Checkstyle: A more fine tune in some configurations (Javadoc for instance)
-- SringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
+- SpringDoc: There is an issue with the swagger generated vs the actual objects (_embedded, _links)
 - Spring Security: Create an authorization provider and use a proper JWT.
 - Tracing: Configure Micrometer Tracing (Previously Known as Spring Cloud Sleuth)
 - GitHub Actions: Add actions for coverage reports, so PR reviewers can see the status without checking build logs.
 - API Operations
   - Add more operations to search for an employee and not just the ID.
 - Liquibase: Could use generate changelog in order to get a database agnostic configuration (Now everything is in SQL)
-- Dependency check: Be more strict with the severity of the vulnerabilities and add a exclusion list.
+- Dependency check: Be more strict with the severity of the vulnerabilities and add an exclusion list.
 
 ## Original Readme info
 ### Instructions
 
 - download the zip file of this project
-- create a repository in your own github named 'java-challenge'
+- create a repository in your own GitHub named 'java-challenge'
 - clone your repository in a folder on your machine
 - extract the zip file in this folder
 - commit and push
